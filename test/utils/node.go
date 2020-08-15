@@ -18,19 +18,20 @@ package utils
 
 import (
 	"fmt"
-	"k8s.io/api/core/v1"
+
+	v1 "k8s.io/api/core/v1"
 )
 
 var (
 	// unreachableTaintTemplate is the taint for when a node becomes unreachable.
-	// Copied from pkg/controller/nodelifecycle to avoid pulling extra dependencies
+	// Copied from pkg/controller/nodelifecycle to avoid pulling extra dependencies.
 	unreachableTaintTemplate = &v1.Taint{
 		Key:    v1.TaintNodeUnreachable,
 		Effect: v1.TaintEffectNoExecute,
 	}
 
 	// notReadyTaintTemplate is the taint for when a node is not ready for executing pods.
-	// Copied from pkg/controller/nodelifecycle to avoid pulling extra dependencies
+	// Copied from pkg/controller/nodelifecycle to avoid pulling extra dependencies.
 	notReadyTaintTemplate = &v1.Taint{
 		Key:    v1.TaintNodeNotReady,
 		Effect: v1.TaintEffectNoExecute,
@@ -51,6 +52,7 @@ func GetNodeCondition(status *v1.NodeStatus, conditionType v1.NodeConditionType)
 	return -1, nil
 }
 
+// IsNodeConditionSetAsExpected checks if a node condition is set as expected or not.
 func IsNodeConditionSetAsExpected(node *v1.Node, conditionType v1.NodeConditionType, wantTrue, silent bool, logFunc func(fmt string, args ...interface{})) bool {
 	// Check the node readiness condition (logging all).
 	for _, cond := range node.Status.Conditions {

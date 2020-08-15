@@ -20,7 +20,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	testutils "k8s.io/kubernetes/test/utils"
 	"net"
 	"strings"
 	"time"
@@ -42,6 +41,7 @@ import (
 	clientset "k8s.io/client-go/kubernetes"
 	clientretry "k8s.io/client-go/util/retry"
 	e2elog "k8s.io/kubernetes/test/e2e/framework/log"
+	testutils "k8s.io/kubernetes/test/utils"
 
 	// TODO remove the direct dependency for internal k8s.io/kubernetes
 	"k8s.io/kubernetes/test/e2e/system"
